@@ -1,1 +1,1 @@
-web: python mybot.py
+web: python -Dserver.port=$PORT mybot.py
