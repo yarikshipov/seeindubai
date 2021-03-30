@@ -187,7 +187,7 @@ def callback_inline(call):
 #    telebot.logger.setLevel(logging.INFO)
 TOKEN = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
 server = Flask(__name__)
-@server.route('/' + tokenBot.TOKEN, methods=['POST'])
+@server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
@@ -195,7 +195,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://secret-fortress-01929.herokuapp.com/' + tokenBot.TOKEN)
+    bot.set_webhook(url='https://secret-fortress-01929.herokuapp.com/' + TOKEN)
     return "!", 200
 
 
