@@ -7,9 +7,8 @@ import logging
 # Подключаем библиотеку для создания кнопок
 from telebot import types
  
-token = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
 # Объявляем бота
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot('1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I')
 
 def create_keyboard():
     # Создаём тип для кнопок
@@ -183,20 +182,20 @@ def callback_inline(call):
             # Закрываем картинку
             img.close()
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
-if "HEROKU" in list(os.environ.keys()):
+#if "HEROKU" in list(os.environ.keys()):
 #    logger = telebot.logger
 #    telebot.logger.setLevel(logging.INFO)
-#
+    TOKEN = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
     PORT = int(os.environ.get('PORT', '5000'))
-    updater = Updater(token)
+    updater = Updater(TOKEN)
     # add handlers
     updater.start_webhook(listen="0.0.0.0",
                           port=PORT,
-                          url_path=token,
-                          webhook_url="https://secret-fortress-01929.herokuapp.com/" + token)
+                          url_path=TOKEN,
+                          webhook_url="https://secret-fortress-01929.herokuapp.com/" + TOKEN)
     updater.idle()
-else:
+#else:
     # если переменной окружения HEROKU нету, значит это запуск с машины разработчика.  
     # Удаляем вебхук на всякий случай, и запускаем с обычным поллингом.
-    bot.remove_webhook()
-    bot.polling(none_stop=True)
+    #bot.remove_webhook()
+    #bot.polling(none_stop=True)
