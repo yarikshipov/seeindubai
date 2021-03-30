@@ -185,15 +185,23 @@ def callback_inline(call):
 #if "HEROKU" in list(os.environ.keys()):
 #    logger = telebot.logger
 #    telebot.logger.setLevel(logging.INFO)
-    TOKEN = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
-    PORT = int(os.environ.get('PORT', '5000'))
-    updater = Updater(TOKEN)
-    # add handlers
-    updater.start_webhook(listen="0.0.0.0",
-                          port=PORT,
-                          url_path=TOKEN,
-                          webhook_url="https://secret-fortress-01929.herokuapp.com/" + TOKEN)
-    updater.idle()
+TOKEN = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
+server = Flask(__name__)
+@server.route('/' + tokenBot.TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://secret-fortress-01929.herokuapp.com/' + tokenBot.TOKEN)
+    return "!", 200
+
+
+if __name__ == '__main__':
+    server.debug = True
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 #else:
     # если переменной окружения HEROKU нету, значит это запуск с машины разработчика.  
     # Удаляем вебхук на всякий случай, и запускаем с обычным поллингом.
