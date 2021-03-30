@@ -1,5 +1,7 @@
 # Подключаем Telegram API 
 import telebot
+import os
+from flask import Flask, request
 
 # Подключаем библиотеку для создания кнопок
 from telebot import types
@@ -7,6 +9,7 @@ from telebot import types
 token = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
 # Объявляем бота
 bot = telebot.TeleBot(token)
+server = Flask(__name__)
 
 def create_keyboard():
     # Создаём тип для кнопок
@@ -100,5 +103,18 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
+@server.route('/' + tokenBot.TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://test-new-new.herokuapp.com/' + tokenBot.TOKEN)
+    return "!", 200
+
+
 if __name__ == '__main__':
-    bot.polling(none_stop=True)
+    server.debug = True
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
