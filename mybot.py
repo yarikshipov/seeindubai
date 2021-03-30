@@ -182,7 +182,6 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
-
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
 if "HEROKU" in list(os.environ.keys()):
 #    logger = telebot.logger
