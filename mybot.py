@@ -15,45 +15,28 @@ def create_keyboard():
     # Создаём тип для кнопок
     keyboard = types.InlineKeyboardMarkup()
     # Создаём кнопку 
-    btn1 = types.InlineKeyboardButton(text="1.Бурж-Халифа", callback_data="1")
+    btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
     # Создаём кнопку 
-    btn2 = types.InlineKeyboardButton(text="2.Фонтаны Дубая", callback_data="2")
+    btn2 = types.InlineKeyboardButton(text="2", callback_data="2")
     # Создаём кнопку 
-    btn3 = types.InlineKeyboardButton(text="3.Дубай Молл", callback_data="3")
+    btn3 = types.InlineKeyboardButton(text="3", callback_data="3")
     # Создаём кнопку 
-    btn4 = types.InlineKeyboardButton(text="4.Сад Чудес", callback_data="4")
+    btn4 = types.InlineKeyboardButton(text="4", callback_data="4")
     # Создаём кнопку 
-    btn5 = types.InlineKeyboardButton(text="5.Global Village", callback_data="5")
+    btn5 = types.InlineKeyboardButton(text="5", callback_data="5")
     # Создаём кнопку 
-    btn6 = types.InlineKeyboardButton(text="6.Dubai Frame", callback_data="6")
+    btn6 = types.InlineKeyboardButton(text="6", callback_data="6")
     # Создаём кнопку 
-    btn7 = types.InlineKeyboardButton(text="7.Aquaventure", callback_data="7")
+    btn7 = types.InlineKeyboardButton(text="7", callback_data="7")
     # Создаём кнопку 
-    btn8 = types.InlineKeyboardButton(text="8.La Mer", callback_data="8")
+    btn8 = types.InlineKeyboardButton(text="8", callback_data="8")
     # Создаём кнопку 
-    btn9 = types.InlineKeyboardButton(text="9.Бурж Аль-Араб", callback_data="9")
+    btn9 = types.InlineKeyboardButton(text="9", callback_data="9")
     # Создаём кнопку 
-    btn10 = types.InlineKeyboardButton(text="10.Ski Dubai", callback_data="10")
+    btn10 = types.InlineKeyboardButton(text="10", callback_data="10")
     # Добавляем кнопку в специальный список
-    keyboard.add(btn1)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn2)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn3)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn4)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn5)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn6)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn7)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn8)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn9)
-    # Добавляем кнопку в специальный список
-    keyboard.add(btn10)
+    keyboard.row(btn1, btn2, btn3, btn4, btn5)
+    keyboard.row(btn6,btn7,btn8,btn9,btn10)
     # Возвращаем кнопки
     return keyboard
 
@@ -103,12 +86,108 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
+        elif call.data == "3": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('3.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="The Dubai Mall — самый крупный торгово-развлекательный центр в мире, расположенный в даунтауне Дубай",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "4": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('4.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="Dubai Miracle Garden -то один из крупнейших в мире цветочных парков, который за буквально несколько лет своей работы сумел заслужить внимание мировой общественности, и стал одним из ключевых объектов привлечения туристов в Дубай",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "5": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('5.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="Global Village Дубай (Всемирная деревня) – это грандиозная ярмарка, которая раньше работала во время зимнего торгового фестиваля (проводится каждый год), а теперь, в связи с большой популярностью, проводится с ноября по апрель.",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "6": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('6.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="С момента открытия в 2018 году Dubai Frame стала излюбленным местом гостей и жителей города. Необычное архитектурное сооружение в парке Zabeel Park служит своеобразным «мостом» между прошлым и настоящим Дубая.",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "7": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('7.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="Aquaventure, лучший аквапарк Ближнего Востока по версии TripAdvisor, — это мир водных развлечений и ярких впечатлений в Дубае.",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "8": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('8.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="La Mer. Пляж разделен на две части полуостровом, на котором построена пешеходная улица с ресторанами и аквапарк. Первая часть находится слева, она более развитая, уютная и ухоженная.",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "9": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('9.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата 
+                photo=img, # Картинка
+                caption="Бурдж-эль-Араб — отель в Дубае, самом крупном городе Объединённых Арабских Эмиратов. Здание стоит в море на расстоянии 280 метров от берега на искусственном острове, соединённом с землёй при помощи моста",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
+        elif call.data == "10": #Если значение равно трем то
+            # Открываем картинку 3
+            img = open('10.jpg', 'rb')
+            # Отправляем картинку
+            bot.send_photo(
+                chat_id=call.message.chat.id, # Идентификатор чата
+                photo=img, # Картинка
+                caption="Ski Dubai — парк развлечений и первый горнолыжный комплекс на Ближнем Востоке под крышей и один из крупнейших в мире с площадью около 22,5 тыс. м², круглый год покрытый искусственным снегом. Вместимость — 1,5 тысячи посетителей. Расположен в торговом комплексе Mall of the Emirates.",
+                reply_markup=keyboard # Кнопки
+            )
+            # Закрываем картинку
+            img.close()
 
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
 if "HEROKU" in list(os.environ.keys()):
-    logger = telebot.logger
-    telebot.logger.setLevel(logging.INFO)
-
+#    logger = telebot.logger
+#    telebot.logger.setLevel(logging.INFO)
+#
     server = Flask(__name__)
     @server.route("/bot", methods=['POST'])
     def getMessage():
@@ -117,7 +196,7 @@ if "HEROKU" in list(os.environ.keys()):
     @server.route("/")
     def webhook():
         bot.remove_webhook()
-        bot.set_webhook(url="https://secret-fortress-01929.herokuapp.com/") # этот url нужно заменить на url вашего Хероку приложения
+        bot.set_webhook(url="https://secret-fortress-01929.herokuapp.com") # этот url нужно заменить на url вашего Хероку приложения
         return "?", 200
     server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 else:
