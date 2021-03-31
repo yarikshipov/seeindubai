@@ -60,24 +60,20 @@ def get_text_messages(message):
     keyboard2 = create_keyboard2()
     if message.text != "Привет":
         bot.send_message(message.from_user.id, "Напиши Привет")
+    elif message.text == "start":
+        # Создаём кнопки
+        keyboard = create_keyboard()
+        # Отправляем сообщение пользователю
+        bot.send_message(
+            message.chat.id,  # Идентификатор ID
+            "Привет, вот список 10 достопремечательностей Дубая, которые ты обязан посетить. Нажми на кнопку ниже, чтобы узнать больше",
+            # Текст сообщения
+            reply_markup=keyboard  # Кнопки
+        )
     else:
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
-# Обозначаем чтобы функция срабатывала при команде /start
-@bot.message_handler(commands=['start'])
-# Объявляем функцию
-def start_bot(message):
-    # Создаём кнопки
-    keyboard = create_keyboard()
-    # Отправляем сообщение пользователю
-    bot.send_message(
-        message.chat.id,  # Идентификатор ID
-        "Привет, вот список 10 достопремечательностей Дубая, которые ты обязан посетить. Нажми на кнопку ниже, чтобы узнать больше",
-        # Текст сообщения
-        reply_markup=keyboard  # Кнопки
-    )
-
-# Декоратор который означает для получения каких-то значений
+# Декоратор который означает для получения значений первой клавиатуры
 @bot.callback_query_handler(func=lambda call: True)
 # Создаём функцию
 def callback_inline(call):
