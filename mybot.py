@@ -58,9 +58,7 @@ def create_keyboard2():
 def get_text_messages(message):
     # Создаём кнопки
     keyboard2 = create_keyboard2()
-    if message.text != "Привет":
-        bot.send_message(message.from_user.id, "Напиши Привет")
-    elif message.text == "start":
+    if message.text == "start":
         # Создаём кнопки
         keyboard = create_keyboard()
         # Отправляем сообщение пользователю
@@ -70,6 +68,8 @@ def get_text_messages(message):
             # Текст сообщения
             reply_markup=keyboard  # Кнопки
         )
+    elif message.text != "Привет":
+        bot.send_message(message.from_user.id, "Напиши Привет")
     else:
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
