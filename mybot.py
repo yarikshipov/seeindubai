@@ -70,6 +70,7 @@ def get_text_messages(message):
 def callback_inline(call):
     # Делаем кнопки
     keyboard = create_keyboard()
+    keyboard2 = create_keyboard2()
     # Проверяем есть ли сообщение
     if call.message:
         # Если значение кнопки равно одному то
@@ -193,8 +194,6 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
-    # Проверяем есть ли сообщение
-    if call.message:
         # Если значение кнопки равно Да то
         if call.data == "yes":
             # Обозначаем чтобы функция срабатывала при команде /start
