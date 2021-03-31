@@ -13,6 +13,8 @@ bot = telebot.TeleBot('1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I')
 def create_keyboard():
     # Создаём тип для кнопок
     keyboard = types.InlineKeyboardMarkup()
+    keyboard2 = types.InlineKeyboardMarkup()
+
     # Создаём кнопку 
     btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
     # Создаём кнопку 
@@ -33,12 +35,26 @@ def create_keyboard():
     btn9 = types.InlineKeyboardButton(text="9", callback_data="9")
     # Создаём кнопку 
     btn10 = types.InlineKeyboardButton(text="10", callback_data="10")
+
     # Добавляем кнопку в специальный список
     keyboard.row(btn1, btn2, btn3, btn4, btn5)
     keyboard.row(btn6,btn7,btn8,btn9,btn10)
+    keyboard2.row(btnYes,btnNo)
     # Возвращаем кнопки
     return keyboard
+    return keyboard2
 
+def create_keyboard2():
+    # Создаём тип для кнопок
+    keyboard2 = types.InlineKeyboardMarkup()
+    # Создаём кнопку
+    btnYes = types.InlineKeyboardButton(text="Да", callback_data="yes")
+    # Создаём кнопку
+    btnNo = types.InlineKeyboardButton(text="Нет", callback_data="no")
+    # Добавляем кнопку в специальный список
+    keyboard2.row(btnYes,btnNo)
+    # Возвращаем кнопки
+    return keyboard2
 # Обозначаем чтобы функция срабатывала при команде /start
 @bot.message_handler(commands=['start'])
 # Объявляем функцию
@@ -54,8 +70,10 @@ def start_bot(message):
 #Сдесь мы обрабатываем текстовые сообщения
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-     if message.text == "Привет":
-         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею")
+    # Создаём кнопки
+    keyboard2 = create_keyboard2()
+    if message.text == "Привет":
+         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею",reply_markup=keyboard2 # Кнопки)
      else:
          bot.send_message(message.from_user.id, "Напиши /help")
 # Декоратор который означает для получения каких-то значений  
