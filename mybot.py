@@ -196,8 +196,6 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
-    # Делаем кнопки для Да Нет
-    keyboard2 = create_keyboard2()
     # Проверяем есть ли сообщение
     if call.message:
         # Если значение кнопки равно Да то
