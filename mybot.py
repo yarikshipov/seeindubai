@@ -55,25 +55,14 @@ def create_keyboard2():
     keyboard2.row(btnYes,btnNo)
     # Возвращаем кнопки
     return keyboard2
-# Обозначаем чтобы функция срабатывала при команде /start
-@bot.message_handler(commands=['start'])
-# Объявляем функцию
-def start_bot(message):
-    # Создаём кнопки
-    keyboard = create_keyboard()
-    # Отправляем сообщение пользователю
-    bot.send_message(
-        message.chat.id, # Идентификатор ID
-        "Привет, вот список 10 достопремечательностей Дубая, которые ты обязан посетить. Нажми на кнопку ниже, чтобы узнать больше", # Текст сообщения
-        reply_markup=keyboard # Кнопки
-    )
+
 #Сдесь мы обрабатываем текстовые сообщения
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     # Создаём кнопки
     keyboard2 = create_keyboard2()
     if message.text != "Привет":
-        bot.send_message(message.from_user.id, "Напиши /help")
+        bot.send_message(message.from_user.id, "Напиши Привет")
     else:
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
@@ -207,6 +196,30 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
+    # Делаем кнопки для Да Нет
+    keyboard2 = create_keyboard3()
+    # Проверяем есть ли сообщение
+    if call.message:
+        # Если значение кнопки равно Да то
+        if call.data == "yes":
+            # Обозначаем чтобы функция срабатывала при команде /start
+            @bot.message_handler(commands=['start'])
+            # Объявляем функцию
+            def start_bot(message):
+                # Создаём кнопки
+                keyboard = create_keyboard()
+                # Отправляем сообщение пользователю
+                bot.send_message(
+                    message.chat.id,  # Идентификатор ID
+                    "Привет, вот список 10 достопремечательностей Дубая, которые ты обязан посетить. Нажми на кнопку ниже, чтобы узнать больше",
+                    # Текст сообщения
+                    reply_markup=keyboard  # Кнопки
+                )
+
+        elif call.data == "no": #Если значение равно Нет
+            # говорим до свидания
+            bot.send_message(message.from_user.id, "Ну тогда пока")
+
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
 #if "HEROKU" in list(os.environ.keys()):
 #    logger = telebot.logger
