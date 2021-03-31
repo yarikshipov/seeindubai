@@ -51,7 +51,13 @@ def start_bot(message):
         "Привет, вот список 10 достопремечательностей Дубая, которые ты обязан посетить. Нажми на кнопку ниже, чтобы узнать больше", # Текст сообщения
         reply_markup=keyboard # Кнопки
     )
-
+#Сдесь мы обрабатываем текстовые сообщения
+@bot.message_handler(content_types=['text'])
+def get_text_messages(message):
+     if message.text == "Привет":
+         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею")
+     else:
+         bot.send_message(message.from_user.id, "Напиши /help")
 # Декоратор который означает для получения каких-то значений  
 @bot.callback_query_handler(func=lambda call: True)
 # Создаём функцию
