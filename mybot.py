@@ -10,56 +10,39 @@ from telebot import types
 # Объявляем бота
 bot = telebot.TeleBot('1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I')
 
-def create_keyboard():
-    # Создаём тип для кнопок
-    keyboard = types.InlineKeyboardMarkup()
-
-    # Создаём кнопку 
-    btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
-    # Создаём кнопку 
-    btn2 = types.InlineKeyboardButton(text="2", callback_data="2")
-    # Создаём кнопку 
-    btn3 = types.InlineKeyboardButton(text="3", callback_data="3")
-    # Создаём кнопку 
-    btn4 = types.InlineKeyboardButton(text="4", callback_data="4")
-    # Создаём кнопку 
-    btn5 = types.InlineKeyboardButton(text="5", callback_data="5")
-    # Создаём кнопку 
-    btn6 = types.InlineKeyboardButton(text="6", callback_data="6")
-    # Создаём кнопку 
-    btn7 = types.InlineKeyboardButton(text="7", callback_data="7")
-    # Создаём кнопку 
-    btn8 = types.InlineKeyboardButton(text="8", callback_data="8")
-    # Создаём кнопку 
-    btn9 = types.InlineKeyboardButton(text="9", callback_data="9")
-    # Создаём кнопку 
-    btn10 = types.InlineKeyboardButton(text="10", callback_data="10")
-
-    # Добавляем кнопку в специальный список
-    keyboard.row(btn1, btn2, btn3, btn4, btn5)
-    keyboard.row(btn6,btn7,btn8,btn9,btn10)
-    # Возвращаем кнопки
-    return keyboard
-
-def create_keyboard2():
-    # Создаём тип для кнопок
-    keyboard2 = types.InlineKeyboardMarkup()
-    # Создаём кнопку
-    btnYes = types.InlineKeyboardButton(text="Да", callback_data="11")
-    # Создаём кнопку
-    btnNo = types.InlineKeyboardButton(text="Нет", callback_data="12")
-    # Добавляем кнопку в специальный список
-    keyboard2.row(btnYes,btnNo)
-    # Возвращаем кнопки
-    return keyboard2
-
 #Сдесь мы обрабатываем текстовые сообщения
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     # Создаём кнопки
     if message.text == "start":
-        # Создаём кнопки
-        keyboard = create_keyboard()
+        # Создаём тип для кнопок
+        keyboard = types.InlineKeyboardMarkup()
+
+        # Создаём кнопку
+        btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
+        # Создаём кнопку
+        btn2 = types.InlineKeyboardButton(text="2", callback_data="2")
+        # Создаём кнопку
+        btn3 = types.InlineKeyboardButton(text="3", callback_data="3")
+        # Создаём кнопку
+        btn4 = types.InlineKeyboardButton(text="4", callback_data="4")
+        # Создаём кнопку
+        btn5 = types.InlineKeyboardButton(text="5", callback_data="5")
+        # Создаём кнопку
+        btn6 = types.InlineKeyboardButton(text="6", callback_data="6")
+        # Создаём кнопку
+        btn7 = types.InlineKeyboardButton(text="7", callback_data="7")
+        # Создаём кнопку
+        btn8 = types.InlineKeyboardButton(text="8", callback_data="8")
+        # Создаём кнопку
+        btn9 = types.InlineKeyboardButton(text="9", callback_data="9")
+        # Создаём кнопку
+        btn10 = types.InlineKeyboardButton(text="10", callback_data="10")
+
+        # Добавляем кнопку в специальный список
+        keyboard.row(btn1, btn2, btn3, btn4, btn5)
+        keyboard.row(btn6, btn7, btn8, btn9, btn10)
+
         # Отправляем сообщение пользователю
         bot.send_message(
             message.chat.id,  # Идентификатор ID
@@ -70,15 +53,47 @@ def get_text_messages(message):
     elif message.text != "Привет":
         bot.send_message(message.from_user.id, "Напиши Привет")
     else:
-        keyboard2 = create_keyboard2()
+        # Создаём тип для кнопок
+        keyboard2 = types.InlineKeyboardMarkup()
+        # Создаём кнопку
+        btnYes = types.InlineKeyboardButton(text="Да", callback_data="11")
+        # Создаём кнопку
+        btnNo = types.InlineKeyboardButton(text="Нет", callback_data="12")
+        # Добавляем кнопку в специальный список
+        keyboard2.row(btnYes, btnNo)
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
-# Декоратор который означает для получения значений первой клавиатуры
+# Декоратор который означает для получения значений      клавиатуры
 @bot.callback_query_handler(func=lambda call: call.data in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
 # Создаём функцию
 def callback_inline(call):
-    # Делаем кнопки
-    keyboard = create_keyboard()
+    # Создаём тип для кнопок
+    keyboard = types.InlineKeyboardMarkup()
+
+    # Создаём кнопку
+    btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
+    # Создаём кнопку
+    btn2 = types.InlineKeyboardButton(text="2", callback_data="2")
+    # Создаём кнопку
+    btn3 = types.InlineKeyboardButton(text="3", callback_data="3")
+    # Создаём кнопку
+    btn4 = types.InlineKeyboardButton(text="4", callback_data="4")
+    # Создаём кнопку
+    btn5 = types.InlineKeyboardButton(text="5", callback_data="5")
+    # Создаём кнопку
+    btn6 = types.InlineKeyboardButton(text="6", callback_data="6")
+    # Создаём кнопку
+    btn7 = types.InlineKeyboardButton(text="7", callback_data="7")
+    # Создаём кнопку
+    btn8 = types.InlineKeyboardButton(text="8", callback_data="8")
+    # Создаём кнопку
+    btn9 = types.InlineKeyboardButton(text="9", callback_data="9")
+    # Создаём кнопку
+    btn10 = types.InlineKeyboardButton(text="10", callback_data="10")
+
+    # Добавляем кнопку в специальный список
+    keyboard.row(btn1, btn2, btn3, btn4, btn5)
+    keyboard.row(btn6, btn7, btn8, btn9, btn10)
     # Проверяем есть ли сообщение
     if call.message:
         # Если значение кнопки равно одному то
