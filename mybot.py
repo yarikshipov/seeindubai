@@ -45,9 +45,9 @@ def create_keyboard2():
     # Создаём тип для кнопок
     keyboard2 = types.InlineKeyboardMarkup()
     # Создаём кнопку
-    btnYes = types.InlineKeyboardButton(text="Да", callback_data="yes")
+    btnYes = types.InlineKeyboardButton(text="Да", callback_data="11")
     # Создаём кнопку
-    btnNo = types.InlineKeyboardButton(text="Нет", callback_data="no")
+    btnNo = types.InlineKeyboardButton(text="Нет", callback_data="12")
     # Добавляем кнопку в специальный список
     keyboard2.row(btnYes,btnNo)
     # Возвращаем кнопки
@@ -57,7 +57,6 @@ def create_keyboard2():
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     # Создаём кнопки
-    keyboard2 = create_keyboard2()
     if message.text == "start":
         # Создаём кнопки
         keyboard = create_keyboard()
@@ -71,6 +70,7 @@ def get_text_messages(message):
     elif message.text != "Привет":
         bot.send_message(message.from_user.id, "Напиши Привет")
     else:
+        keyboard2 = create_keyboard2()
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
 # Декоратор который означает для получения значений первой клавиатуры
@@ -202,15 +202,7 @@ def callback_inline(call):
             )
             # Закрываем картинку
             img.close()
-
-# Декоратор который означает для получения значений второй клавиатуры
-@bot.callback_query_handler(func=lambda call: True)
-# Создаём функцию
-def callback_inline2(call):
-    # Проверяем есть ли сообщение
-    if call.message:
-        # Если значение кнопки равно Да то
-        if call.data == "yes":
+        elif call.data == "11":
             # Отправляем сообщение пользователю
             bot.send_message(
             message.chat.id,  # Идентификатор ID
@@ -218,9 +210,10 @@ def callback_inline2(call):
             # Текст сообщения
             reply_markup=keyboard  # Кнопки
         )
-        elif call.data == "no": #Если значение равно Нет
+        elif call.data == "12": #Если значение равно Нет
             # говорим до свидания
             bot.send_message(message.from_user.id, "Ну тогда пока")
+
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
