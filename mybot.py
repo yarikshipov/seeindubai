@@ -74,7 +74,7 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
 # Декоратор который означает для получения значений первой клавиатуры
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=lambda call: call.data in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
 # Создаём функцию
 def callback_inline(call):
     # Делаем кнопки
