@@ -13,7 +13,6 @@ bot = telebot.TeleBot('1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I')
 def create_keyboard():
     # Создаём тип для кнопок
     keyboard = types.InlineKeyboardMarkup()
-    keyboard2 = types.InlineKeyboardMarkup()
 
     # Создаём кнопку 
     btn1 = types.InlineKeyboardButton(text="1", callback_data="1")
@@ -39,10 +38,8 @@ def create_keyboard():
     # Добавляем кнопку в специальный список
     keyboard.row(btn1, btn2, btn3, btn4, btn5)
     keyboard.row(btn6,btn7,btn8,btn9,btn10)
-    keyboard2.row(btnYes,btnNo)
     # Возвращаем кнопки
     return keyboard
-    return keyboard2
 
 def create_keyboard2():
     # Создаём тип для кнопок
