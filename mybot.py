@@ -72,11 +72,13 @@ def start_bot(message):
 def get_text_messages(message):
     # Создаём кнопки
     keyboard2 = create_keyboard2()
-    if message.text == "Привет":
-         bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею",reply_markup=keyboard2 # Кнопки)
-     else:
-         bot.send_message(message.from_user.id, "Напиши /help")
-# Декоратор который означает для получения каких-то значений  
+    if message.text != "Привет":
+        bot.send_message(message.from_user.id, "Напиши /help")
+    else:
+        bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
+
+
+# Декоратор который означает для получения каких-то значений
 @bot.callback_query_handler(func=lambda call: True)
 # Создаём функцию
 def callback_inline(call):
