@@ -222,9 +222,9 @@ def callback_inline2(call):
             # говорим до свидания
             bot.send_message(message.from_user.id, "Ну тогда пока")
 # Проверим, есть ли переменная окружения Хероку (как ее добавить смотрите ниже)
-#if "HEROKU" in list(os.environ.keys()):
-#    logger = telebot.logger
-#    telebot.logger.setLevel(logging.INFO)
+if "HEROKU" in list(os.environ.keys()):
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)
 TOKEN = '1739533668:AAFABHGc2LmgWEzKCHF7uz-wFFtCWMSZF2I'
 server = Flask(__name__)
 @server.route('/' + TOKEN, methods=['POST'])
@@ -242,8 +242,8 @@ def webhook():
 if __name__ == '__main__':
     server.debug = True
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-#else:
-    # если переменной окружения HEROKU нету, значит это запуск с машины разработчика.  
+else:
+    # если переменной окружения HEROKU нету, значит это запуск с машины разработчика.
     # Удаляем вебхук на всякий случай, и запускаем с обычным поллингом.
-    #bot.remove_webhook()
-    #bot.polling(none_stop=True)
+    bot.remove_webhook()
+    bot.polling(none_stop=True)
