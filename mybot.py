@@ -54,14 +54,14 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, "Напиши Привет")
     else:
         # Создаём тип для кнопок
-        keyboard = types.InlineKeyboardMarkup()
+        keyboard2 = types.InlineKeyboardMarkup()
         # Создаём кнопку
-        btnYes = types.InlineKeyboardButton(text="Да", callback_data="11")
+        btn11 = types.InlineKeyboardButton(text="Да", callback_data="11")
         # Создаём кнопку
-        btnNo = types.InlineKeyboardButton(text="Нет", callback_data="12")
+        btn12 = types.InlineKeyboardButton(text="Нет", callback_data="12")
         # Добавляем кнопку в специальный список
-        keyboard.row(btnYes, btnNo)
-        bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard)
+        keyboard2.add(btn11, btn12)
+        bot.send_message(message.from_user.id, "Привет,меня зовут Дубайчик.Xочешь я покажу тебе, что я умею", reply_markup=keyboard2)
 
 # Декоратор который означает для получения значений      клавиатуры
 @bot.callback_query_handler(func=lambda call: call.data in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
